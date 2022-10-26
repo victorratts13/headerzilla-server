@@ -8,6 +8,7 @@ extra.use(stealth);
 function SetHeaderKey(url, expected) {
     return new Promise(async (resolve, reject) => {
         var ExecPath = puppeteer.executablePath();
+        console.log(ExecPath)
         const browser = await extra.launch({
             headless: true,
             executablePath: ExecPath,
