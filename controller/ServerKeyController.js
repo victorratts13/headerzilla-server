@@ -8,12 +8,19 @@ extra.use(stealth);
 function SetHeaderKey(url, expected) {
     return new Promise(async (resolve, reject) => {
         var ExecPath = puppeteer.executablePath();
-        const browser = await extra.launch({ headless: true, executablePath: ExecPath });
+        const browser = await extra.launch({
+            headless: true,
+            executablePath: ExecPath,
+            'args': [
+                '--no-sandbox',
+                '--disable-setuid-sandbox'
+            ]
+        });
         const page = await browser.newPage();
 
         page.on("response", async (response) => {
             var headers = response.request().headers();
-            if(headers[expected]){
+            if (headers[expected]) {
                 resolve(headers)
             }
         })
