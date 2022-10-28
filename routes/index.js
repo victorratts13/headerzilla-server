@@ -9,8 +9,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/serverkey', async function (req, res, next) {
-  var { call } = req.query;
-  var headers = await SetHeaderKey(call ?? url, 'secret_key');
+  var { call, spected, q } = req.query;
+  console.log(q)
+  var headers = await SetHeaderKey(call ?? url, spected ?? 'secret_key');
   res.json(headers);
 });
 
