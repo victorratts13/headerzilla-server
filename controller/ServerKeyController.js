@@ -10,10 +10,11 @@ function SetHeaderKey(url, expected) {
         var ExecPath = puppeteer.executablePath();
         console.log(await chromium.executablePath ?? ExecPath)
         const browser = await extra.launch({
+            ignoreDefaultArgs: ['--disable-extensions'],
             args: chromium.args,
             defaultViewport: chromium.defaultViewport,
             executablePath: await chromium.executablePath ?? ExecPath,
-            headless: chromium.headless,
+            headless: true,
         });
 
         const page = await browser.newPage();
