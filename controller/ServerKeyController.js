@@ -1,4 +1,5 @@
 const chromium = require('chrome-aws-lambda');
+const chrome = require('chromium');
 const puppeteer = require('puppeteer');
 const extra = require("puppeteer-extra");
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
@@ -7,7 +8,8 @@ extra.use(stealth);
 
 function SetHeaderKey(url, expected) {
     return new Promise(async (resolve, reject) => {
-        var ExecPath = puppeteer.executablePath();
+        // var ExecPath = puppeteer.executablePath();
+        var ExecPath = chrome.path;
         console.log(await chromium.executablePath ?? ExecPath)
         const browser = await extra.launch({
             ignoreDefaultArgs: ['--disable-extensions'],
